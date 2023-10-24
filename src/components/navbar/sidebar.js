@@ -55,7 +55,7 @@ export default function SideBar() {
 
   return (
     <>
-          <MenuIcon onClick={toggleDrawer(!isOpen)}/>
+          <MenuIcon onClick={toggleDrawer(true)}/>
           <Drawer
             anchor='left'
             open={isOpen}
