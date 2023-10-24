@@ -40,8 +40,8 @@ export default function SideBar() {
 
       <List sx={{mt: '32px'}}>
         {['HOW TO PLAY', 'GAMEMODE: STANDARD', 'GAMEMODE: NO STOP', 'MY ANIME HISTORY'].map((text) => (
-          <ListItem key={text} disableGutters disablePadding>
-            <ListItemButton sx={[{'&:hover': {backgroundColor: 'transparent'}}]} disableGutters disablePadding>
+          <ListItem key={text} disableGutters>
+            <ListItemButton sx={[{'&:hover': {backgroundColor: 'transparent'}}]} disableGutters>
               <ListItemText sx={{fontWeight: 400}}>{text}</ListItemText>
             </ListItemButton>
           </ListItem>
