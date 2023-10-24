@@ -1,7 +1,7 @@
 import { Box } from '@mui/material'
 import ImageBg from '@/assets/imageBg.svg'
 import '@/styles/global.css'
-import Navbar from '@/components/navbar';
+import Navbar from '@/components/Navbar';
 import ThemeRegistry from '@/components/ThemeRegistry/ThemeRegistry';
 
 export default function RootLayout({ children }) {

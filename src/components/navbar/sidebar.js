@@ -9,7 +9,7 @@ import ListItemButton from '@mui/material/ListItemButton'
 import ListItemText from '@mui/material/ListItemText'
 import MenuIcon from '@mui/icons-material/Menu'
 
-import { Typography } from '@mui/material'
+import { IconButton, Typography } from '@mui/material'
 
 export default function SideBar() {
   const [isOpen, setIsOpen] = useState(false)
@@ -54,15 +54,24 @@ export default function SideBar() {
   )
 
   return (
-    <>
-          <MenuIcon onClick={toggleDrawer(true)}/>
-          <Drawer
-            anchor='left'
-            open={isOpen}
-            onClose={toggleDrawer(false)}
-          >
-            {list()}
-          </Drawer>
+    <>    
+        <IconButton
+          size='large'
+          edge='start'
+          color='inherit'
+          aria-label='menu'
+          onClick={toggleDrawer(true)}
+        >
+          <MenuIcon />
+        </IconButton>
+          
+        <Drawer
+          anchor='left'
+          open={isOpen}
+          onClose={toggleDrawer(false)}
+        >
+          {list()}
+        </Drawer>
     </>
   )
 }
