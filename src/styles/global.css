@@ -1,0 +1,35 @@
+:root {
+  --orange: #F28500;
+  --black: #242423;
+  --dark: #333533;
+  --white: #F2F3F4;
+  --light-orange: #FF9D26;
+  --green: #4DA167;
+  --red: #E02F40;
+}
+
+html,
+body {
+  padding: 0;
+  margin: 0;
+  background: var(--black);
+
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+* {
+  font-family: 'Poppins';
+  box-sizing: border-box;
+}
+
+h1,h2,h3,h4,h5,p{
+  margin: 0;
+}
+
+.Title{
+  text-transform: capitalize;
+}
