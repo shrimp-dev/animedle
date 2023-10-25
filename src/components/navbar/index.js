@@ -9,23 +9,23 @@ import { NAV_LINKS } from '@/constants'
 
 export default function Navbar() {
   return (
-    <AppBar position='static'>
+    <AppBar position='static' elevation={0}>
       <Toolbar sx={{ backgroundColor: 'primary.dark', color: 'primary.main', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
         <SideBar/>
         <Typography variant='h6' noWrap component='div' color='primary.main' fontSize={32} fontFamily={'titan'}>
           Animedle
         </Typography>
-        <Box sx={{display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '24px'}}>
+        <Box sx={{display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '24px'}} >
           <IconButton href={NAV_LINKS.buy_me_a_coff} target="_blank">
-            <CoffeeIcon fontSize='large' sx={{'&:hover': {color: 'primary.main'}}}/>
+            <CoffeeIcon fontSize='large' sx={{ color:'primary.main', '&:hover': {color: 'primary.white'}}}/>
           </IconButton>
 
           <IconButton href={NAV_LINKS.twitter} target="_blank">
-            <TwitterIcon fontSize='large' sx={{'&:hover': {color: 'primary.main'}}}/>
+            <TwitterIcon fontSize='large' sx={{ color:'primary.main','&:hover': {color: 'primary.white'}}}/>
           </IconButton>
 
           <IconButton href={NAV_LINKS.github} target="_blank">
-            <GitHubIcon fontSize='large' sx={{'&:hover': {color: 'primary.main'}}}/>
+            <GitHubIcon fontSize='large' sx={{ color:'primary.main','&:hover': {color: 'primary.white'}}}/>
           </IconButton>
         </Box>
       </Toolbar>

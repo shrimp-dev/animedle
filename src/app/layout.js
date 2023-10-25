@@ -1,5 +1,4 @@
 import { Box } from '@mui/material'
-import ImageBg from '@/assets/imageBg.svg'
 import '@/styles/global.css'
 import Navbar from '@/components/Navbar';
 import ThemeRegistry from '@/components/ThemeRegistry/ThemeRegistry';
@@ -14,9 +13,7 @@ export default function RootLayout({ children }) {
               display: 'flex',
               flexDirection: 'column',
               alignItems: 'flex-start',
-              minHeight: '100vh',
-              backgroundImage: `url(${ImageBg.src})`,
-              backgroundSize: 'auto',
+              minHeight: '100vh'
             }}
           >
             <Navbar/>

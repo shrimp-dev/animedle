@@ -1,44 +1,52 @@
-import { Box } from "@mui/material";
+'use client'
+
+import { Box, Button } from "@mui/material";
 import Image from "next/image";
 import ImageCarousel from "./ImageCarousel";
+import { useState } from "react";
+import { getImageByBase64 } from "@/services/ImageService";
 
 const MOCK_IMAGE = 'https://i.imgur.com/ffKwR4e.gif'
 
-export default async function Game({type='standard'}) {
-  const getData = async () => {
-    const res = await fetch(process.env.BASE_FETCH_URL + '/api/anime/daily')
-    const { data } = await res.json()
+export default function Game({type='standard', animeData}) {
 
-    return data
-  }
+  const [currentImage, setCurrentImage] = useState(0)
+  const [guessLevel, setGuessLevel] = useState(0)
 
-  const animeData = await getData()
-
-  const getImageBase64 = (base64) => {
-    return 'data:image/jpeg;base64,' + base64
+  const increaseGuessLevel = () => {
+    if (guessLevel < 4) {
+      const newGuessLevel = guessLevel + 1
+      setGuessLevel(newGuessLevel)
+      setCurrentImage(newGuessLevel)
+    }
+      
   }
 
   return (
     <Box sx={{backgroundColor: 'primary.black', width: '58%', minWidth: '350px', height:'calc(100vh - 64px)', 
               padding: '60px', display: 'flex', alignItems: 'center', justifyContent: 'flex-start', flexDirection: 'column',
+              boxShadow: '0px 0px 6px 0px #00000040'
             }}
     >
       <Box sx={{backgroundColor: 'primary.main', width: '100%', minHeight: '633px', padding: '20px', borderRadius: '4px', 
-              display: 'flex', flexDirection: 'column', gap: '16px', alignItems: 'center'
+              display: 'flex', flexDirection: 'column', gap: '16px', alignItems: 'center', boxShadow: '0px 4px 4px 0px #00000040'
             }}
       >
         <Image 
-          src={animeData.images ? getImageBase64(animeData.images[4]) : MOCK_IMAGE}
+          src={animeData.images ? getImageByBase64(animeData.images[currentImage]) : MOCK_IMAGE}
           sizes="100vw"
           width={50}
           height={50}
           style={{
-            width: '100%',borderRadius: '4px', border: '1px solid var(--dark)', height: 'auto'
+            width: '100%',borderRadius: '4px', border: '1px solid var(--dark)', height: '450px'
           }}
           alt='What is the anime ?'
         />
-        <ImageCarousel currentGuessImage={2} guessNumber={3}/>
+        <ImageCarousel currentGuessImage={currentImage} guessNumber={guessLevel} handleChangeImageNumber={(newNumber)=>setCurrentImage(newNumber)}/>
       </Box>
+      <Button onClick={increaseGuessLevel}>
+        Aumentar
+      </Button>
     </Box>
   )
 }
