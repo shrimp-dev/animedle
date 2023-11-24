@@ -5,10 +5,11 @@ import Image from "next/image";
 import ImageCarousel from "./ImageCarousel";
 import { useState } from "react";
 import { getImageByBase64 } from "@/services/ImageService";
+import SearchBar from "./SearchBar";
 
 const MOCK_IMAGE = 'https://i.imgur.com/ffKwR4e.gif'
 
-export default function Game({type='standard', animeData}) {
+export default function Game({type='standard', animeData, searchOptions}) {
 
   const [currentImage, setCurrentImage] = useState(0)
   const [guessLevel, setGuessLevel] = useState(0)
@@ -47,6 +48,7 @@ export default function Game({type='standard', animeData}) {
       <Button onClick={increaseGuessLevel}>
         Aumentar
       </Button>
+      <SearchBar searchOptions={searchOptions}/>
     </Box>
   )
 }
