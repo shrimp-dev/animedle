@@ -1,5 +1,3 @@
-'use client'
-
 import { AppBar, Box, IconButton, Toolbar, Typography } from '@mui/material'
 import CoffeeIcon from '@mui/icons-material/Coffee'
 import TwitterIcon from '@mui/icons-material/Twitter'
