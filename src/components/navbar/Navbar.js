@@ -2,11 +2,11 @@ import { AppBar, Box, IconButton, Toolbar, Typography } from '@mui/material'
 import CoffeeIcon from '@mui/icons-material/Coffee'
 import TwitterIcon from '@mui/icons-material/Twitter'
 import GitHubIcon from '@mui/icons-material/GitHub'
-import SideBar from '@/components/Navbar/sidebar'
+import SideBar from '@/components/Navbar/Sidebar'
 import { NAV_LINKS } from '@/constants'
 import Link from 'next/link'
 
-export function Navbar() {
+export default function Navbar() {
   return (
     <AppBar position='static' elevation={0}>
       <Toolbar sx={{ backgroundColor: 'primary.dark', color: 'primary.main', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
