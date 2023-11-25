@@ -6,7 +6,7 @@ import SideBar from '@/components/Navbar/sidebar'
 import { NAV_LINKS } from '@/constants'
 import Link from 'next/link'
 
-export default function Navbar() {
+export function Navbar() {
   return (
     <AppBar position='static' elevation={0}>
       <Toolbar sx={{ backgroundColor: 'primary.dark', color: 'primary.main', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
