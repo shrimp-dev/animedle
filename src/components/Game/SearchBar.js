@@ -8,7 +8,7 @@ export default function SearchBar({ searchOptions, handleGuess, disabled }) {
   const [inputValue, setInputValue] = useState('')
   const [selectedOption, setSelectedOption] = useState(null)
 
-  const currentOptions = !inputValue ? [] : searchOptions.filter(x=> x.english.includes(inputValue)).slice(0, 10)
+  const currentOptions = !inputValue ? [] : searchOptions.filter(x=> x.english.includes(inputValue.toLocaleLowerCase())).slice(0, 45)
 
   const resetInput = () => {
     setInputValue('')
@@ -16,7 +16,8 @@ export default function SearchBar({ searchOptions, handleGuess, disabled }) {
   }
 
   const handleChangeInputValue = (newValue) => {
-    setInputValue(newValue)
+    const valueValidated = newValue ? newValue : ''
+    setInputValue(valueValidated)
 
     const filterOption = searchOptions.filter(x=> x.english === newValue)[0] 
     const newOptionValue = filterOption ? filterOption : null

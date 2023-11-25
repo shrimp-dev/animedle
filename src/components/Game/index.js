@@ -7,6 +7,7 @@ import { useState } from "react";
 import { getImageByBase64 } from "@/services/ImageService";
 import SearchBar from "./SearchBar";
 import GuessCard from "./GuessCard";
+import { getAnimeById } from "@/services/AnimeService";
 
 const MOCK_IMAGE = 'https://i.imgur.com/ffKwR4e.gif'
 
@@ -15,13 +16,25 @@ export default function Game({type='standard', animeData, searchOptions}) {
   const [currentImage, setCurrentImage] = useState(0)
   const [guessLevel, setGuessLevel] = useState(0)
   const [guessAnimes, setGuessAnimes] = useState([])
+  const [finishGame, setFinishGame] = useState(false)
 
-  const handleCorrectGuess = () => {
+  const handleCorrectGuess = async () => {
+    const anime = animeData.infos
+    const newGuessAnimes = [anime, ...guessAnimes]
+
+    setGuessAnimes(newGuessAnimes)
     setGuessLevel(4)
+    setFinishGame(true)
   }
 
-  const handleWrongGuess = (animeGuess) => {
-    console.log(animeGuess)
+  const handleWrongGuess = async (animeGuess) => {
+    const anime = await getAnimeById(animeGuess.id)
+    if (!anime)
+      return 
+
+    const newGuessAnimes = [anime, ...guessAnimes]
+    setGuessAnimes(newGuessAnimes)
+    increaseGuessLevel()
   }
 
   const increaseGuessLevel = () => {
@@ -29,6 +42,8 @@ export default function Game({type='standard', animeData, searchOptions}) {
       const newGuessLevel = guessLevel + 1
       setGuessLevel(newGuessLevel)
       setCurrentImage(newGuessLevel)
+    } else {
+      setFinishGame(true)
     }
       
   }
@@ -39,8 +54,7 @@ export default function Game({type='standard', animeData, searchOptions}) {
       handleCorrectGuess()
       return 
     }
-      
-    increaseGuessLevel()
+    handleWrongGuess(animeGuess)  
   }
 
   return (
@@ -68,9 +82,12 @@ export default function Game({type='standard', animeData, searchOptions}) {
       <Typography sx={{margin: '32px 0 16px 0'}}>
         Which anime does this image belong to?
       </Typography>
-      <SearchBar searchOptions={searchOptions} handleGuess={handleGuess} disabled={guessLevel >= 4}/>
-      <GuessCard isCorrect/>
-      <GuessCard />
+      <SearchBar searchOptions={searchOptions} handleGuess={handleGuess} disabled={finishGame}/>
+      {
+        guessAnimes.map(anime=>{
+          return <GuessCard key={anime.id} animeData={anime} correctAnimeData={animeData.infos} isCorrect={anime.id == animeData.infos.id}/>
+        })
+      }
     </Box>
   )
 }
