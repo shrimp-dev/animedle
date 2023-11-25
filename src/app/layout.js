@@ -1,8 +1,8 @@
 import { Box } from '@mui/material'
 import '@/styles/global.css'
+import Navbar from '@/components/Navbar/Navbar';
 import ThemeRegistry from '@/components/ThemeRegistry/ThemeRegistry';
 import HelloMessage from '@/components/HelloMessage';
-import Navbar from '../components/Navbar/Navbar'
 
 export default function RootLayout({ children }) {
   return (
