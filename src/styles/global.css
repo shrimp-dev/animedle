@@ -32,3 +32,18 @@ h1,h2,h3,h4,h5,p{
 .Title{
   text-transform: capitalize;
 }
+
+.custom-scrollbar{
+  &::-webkit-scrollbar {
+      width: 8px;
+      height: 10px;
+      background-color: #5454541a;
+      border-radius: 10px;
+  } 
+  &::-webkit-scrollbar-thumb {
+      border: 2px solid rgba(0,0,0,0);
+      background-clip: padding-box;
+      border-radius: 5px;
+      background-color: rgba(84,84,84,0.5);
+  }
+}
