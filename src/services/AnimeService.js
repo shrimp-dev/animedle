@@ -1,40 +1,59 @@
 
 const getDailyAnime = async () => {
-  const res = await fetch(process.env.BASE_FETCH_URL + '/daily', { cache: 'no-store' })
-  const data = await res.json()
+  try {
+    const res = await fetch(process.env.BASE_FETCH_URL + '/daily', { cache: 'no-store' })
+    const data = await res.json()
+    return data
+  } catch (err) {
+    console.log({
+      type: 'GET_DAILY_ANIME',
+      err: err
+    })
 
-  return data
+    return null 
+  }
 }
 
 const getAllAnime = async () => {
-  const res = await fetch(process.env.BASE_FETCH_URL + '/anime-list', { cache: 'no-store' })
-  const data = await res.json()
+  try {
+    const res = await fetch(process.env.BASE_FETCH_URL + '/anime-list', { cache: 'no-store' })
+    const data = await res.json()
 
-  const SET_IDS = new Set()
+    const SET_IDS = new Set()
 
-  const formatData = data.map(x=> {
-    if (SET_IDS.has(x['idx-id']))
-      return null
-    SET_IDS.add(x['idx-id'])
+    const formatData = data.map(x=> {
+      if (SET_IDS.has(x['idx-id']))
+        return null
+      SET_IDS.add(x['idx-id'])
 
-    return {
-      id: x['idx-id'],
-      romanji: x['idx-ro'],
-      english: x['idx-en']
-    }
-  })
+      return {
+        id: x['idx-id'],
+        romanji: x['idx-ro'],
+        english: x['idx-en']
+      }
+    })
 
-  return formatData.filter(x=> x !== null)
+    return formatData.filter(x=> x !== null)
+  } catch (err) {
+    console.log({
+      type: 'GET_ALL_ANIMES',
+      err: err
+    })
+    return null
+  }
 }
 
 const getAnimeById = async (idAnime) => {
   try {
-    const res = await fetch(`https://back-anime-dle.onrender.com/anime-info-by-id?id=${idAnime}`)
+    const res = await fetch(process.env.BASE_FETCH_URL+`/anime-info-by-id?id=${idAnime}`)
     const data = await res.json()
   
     return data
   } catch (err) {
-    console.log(err)
+    console.log({
+      type: 'GET_ANIME_BY_ID',
+      err: err
+    })
     return null
   }
 }
@@ -52,12 +71,13 @@ const saveGuess = async (animeId, guessCount, guessType = 'daily', correctAnswer
   }
 
   try {
-    const res = await fetch('https://back-anime-dle.onrender.com/save-guess',{
+    const res = await fetch(process.env.BASE_FETCH_URL+'/save-guess',{
                               method: 'POST',
                               body: body
                             }) 
   } catch (err) {
     console.log(err)
+    return null
   }
 }
 
