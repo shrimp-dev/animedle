@@ -1,10 +1,8 @@
-'use client'
-
 import { AppBar, Box, IconButton, Toolbar, Typography } from '@mui/material'
 import CoffeeIcon from '@mui/icons-material/Coffee'
 import TwitterIcon from '@mui/icons-material/Twitter'
 import GitHubIcon from '@mui/icons-material/GitHub'
-import SideBar from '@/components/Navbar/sidebar'
+import SideBar from '@/components/Navbar/Sidebar'
 import { NAV_LINKS } from '@/constants'
 import Link from 'next/link'
 

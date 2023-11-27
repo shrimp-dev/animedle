@@ -4,11 +4,6 @@ import SouthRoundedIcon from '@mui/icons-material/SouthRounded'
 import NorthRoundedIcon from '@mui/icons-material/NorthRounded'
 
 export default function GuessCard({animeData, isCorrect = false, correctAnimeData}) {
-
-  console.log({
-    animeData, correctAnimeData
-  })
-
   if (isCorrect)
     return (
       <Card sx={{ bgcolor: 'primary.green', width: '100%', mt: '32px' }}>

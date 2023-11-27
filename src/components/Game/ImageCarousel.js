@@ -7,7 +7,6 @@ import LockIcon from '@mui/icons-material/Lock'
 
 export default function ImageCarousel({currentGuessImage = 0, guessNumber = 0, handleChangeImageNumber}) {
   const handleChangeImage = (isLock, newNumber) => {
-    console.log({isLock, newNumber})
     if (isLock)
       return
     handleChangeImageNumber(newNumber)

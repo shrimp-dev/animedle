@@ -12,7 +12,6 @@ import { getAnimeById } from "@/services/AnimeService";
 const MOCK_IMAGE = 'https://i.imgur.com/ffKwR4e.gif'
 
 export default function Game({type='standard', animeData, searchOptions}) {
-
   const [currentImage, setCurrentImage] = useState(0)
   const [guessLevel, setGuessLevel] = useState(0)
   const [guessAnimes, setGuessAnimes] = useState([])
@@ -57,8 +56,15 @@ export default function Game({type='standard', animeData, searchOptions}) {
     handleWrongGuess(animeGuess)  
   }
 
+  if (!animeData || !searchOptions)
+    return (
+      <Box sx={{p: '60px', display: 'flex', alignItems: 'center', justifyContent: 'center', flex: 1}}>
+        <Typography fontSize={32} fontWeight='bold' textAlign='center' color='#dddd'>Unable to load site check again in a few minutes...</Typography>
+      </Box>
+    )
+
   return (
-    <Box sx={{bgcolor: 'primary.black', width: '58%', minWidth: '350px', 
+    <Box sx={{bgcolor: 'primary.black', minWidth: '350px', 
               p: '60px', display: 'flex', alignItems: 'center', justifyContent: 'flex-start', flexDirection: 'column',
               boxShadow: '0px 0px 6px 0px #00000040'
             }}
